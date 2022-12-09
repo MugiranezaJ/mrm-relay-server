@@ -1,0 +1,8 @@
+version: '1'
+services:
+  server:
+    container_name: server
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4201

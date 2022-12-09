@@ -7,7 +7,6 @@ export class User{
             const token = req.headers.authorization?? ""
             axios.get('/usersList', {'headers': {'Authorization': token}})
             .then(response => {
-                // return res.status(response.status).json(JSON.parse(String(response.data).replace("=", ":")))
                 return res.status(response.status).json(response.data)
             }).catch(err => {
                 return res.status(err.response.status).json(err.response.data)
@@ -24,6 +23,9 @@ export class User{
             .then(response => {
                 return res.status(response.status).json(response.data)
             }).catch(err => {
+                if(err.response == undefined)
+                    return res.status(500).json({
+                        message: "there was error connecting to the server"})
                 return res.status(err.response.status).json(err.response.data)
             })
         } catch (error) {
@@ -37,6 +39,9 @@ export class User{
             .then(response => {
                 return res.status(response.status).json(response.data)
             }).catch(err => {
+                if(err.response == undefined)
+                    return res.status(500).json({
+                        message: "there was error connecting to the server"})
                 return res.status(err.response.status).json(err.response.data)
             })
         }catch(error){
